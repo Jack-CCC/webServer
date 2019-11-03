@@ -23,17 +23,21 @@ public class Server {
 	
 	private void start() {
 		try {
-			System.out.println("wait for join");
-			Socket socket = server.accept();
-			System.out.println("one client join");
 			
-			InputStream inputStream = socket.getInputStream();
-			InputStreamReader isr = new InputStreamReader(inputStream, "UTF-8");
-			BufferedReader br = new BufferedReader(isr);
-			
-			String str = br.readLine();
-			System.out.println("the client say:" + str);
-			
+				System.out.println("wait for join");
+				Socket socket = server.accept();
+				System.out.println("one client join");
+				
+				InputStream inputStream = socket.getInputStream();
+				InputStreamReader isr = new InputStreamReader(inputStream, "UTF-8");
+				BufferedReader br = new BufferedReader(isr);
+				
+				String line = null;
+				
+				while((line = br.readLine()) != null) {
+					System.out.println("the client say:" + line);
+				}
+				
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

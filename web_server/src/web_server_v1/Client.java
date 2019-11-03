@@ -7,6 +7,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 
 public class Client {
 	
@@ -26,18 +27,23 @@ public class Client {
 	
 	private void start() {
 		try {
+			Scanner scanner = new Scanner(System.in);
+			
 			OutputStream out = socket.getOutputStream();
 			OutputStreamWriter osw = new OutputStreamWriter(out,"UTF-8");
 			BufferedWriter bw = new BufferedWriter(osw);
 			PrintWriter pw = new PrintWriter(bw, true);
 			
-			String lineString = "你好";
-			pw.println(lineString);
+			String line = null;
+			
+			while(true) {
+				line = scanner.nextLine();
+				pw.println(line);
+			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public static void main(String[] args) {
